@@ -1,0 +1,126 @@
+public class Main {
+    public static void main (String [] args) {
+        EmpleadoPorHoras empleado1 = new EmpleadoPorHoras("Juan", 100, 5);
+        EmpleadoTiempoCompleto empleado2 = new EmpleadoTiempoCompleto("Juana", 200000);
+
+
+        System.out.println("Horas trabajadas: " + empleado1.horasTrabajadas
+                + "El salario es: " + empleado1.calcularPago()
+                + "Nombre : " + empleado1.nombre);
+
+        System.out.println("El salario es: " + empleado2.salario + "Nombre : " + empleado2.nombre);
+    }
+}
+
+CLASE EMPLEADOS
+public abstract class Empleados {
+    protected String nombre;
+    protected double salario;
+
+     public Empleados ( ){
+         this.nombre = "NoDefinido";
+         this.salario = -1;
+     }
+
+    public Empleados (String nombre, double salario ){
+        this.nombre = nombre;
+        this.salario = salario;
+    }
+
+     public double getSalario() {
+         return salario;
+     }
+
+     public String getNombre() {
+         return nombre;
+     }
+
+     public void setNombre(String nombre) {
+         this.nombre = nombre;
+     }
+
+     public void setSalario(double salario) {
+         this.salario = salario;
+     }
+
+     public abstract double calcularPago();
+
+}
+
+CLASE EMPLEADOS POR HORAS
+
+public class EmpleadoPorHoras extends Empleados {
+    float horasTrabajadas;
+
+    public EmpleadoPorHoras (){
+        this.horasTrabajadas = 0;
+
+    }
+
+    public EmpleadoPorHoras(String nombre, double salario, float horasTrabajadas) {
+        super(nombre, salario);
+        this.horasTrabajadas = horasTrabajadas;
+    }
+
+    public float getHorasTrabajadas() {
+        return horasTrabajadas;
+    }
+
+    public void setHorasTrabajadas(float horasTrabajadas) {
+        this.horasTrabajadas = horasTrabajadas;
+    }
+
+    public EmpleadoPorHoras (float horasTrabajadas){
+        this.horasTrabajadas = horasTrabajadas;
+    }
+    @Override
+    public double calcularPago() {
+        double cobro = horasTrabajadas * salario;
+        return cobro;
+    }
+
+}
+
+CLASE EMPLEADOS TIEMPO COMPLETO
+
+public class EmpleadoTiempoCompleto extends Empleados {
+
+    public EmpleadoTiempoCompleto(String nombre, double salario) {
+        super(nombre, salario);
+    }
+
+    @Override
+    public double calcularPago() {
+        return salario;
+    }
+}
+
+CLASE EMPLEADOS CONTRATISTAS
+
+public class EmpleadoContratista extends EmpleadoPorHoras {
+    private double tarifaPorProyecto;
+
+    public EmpleadoContratista ()
+    {
+        this.tarifaPorProyecto = 0;
+    }
+
+    public EmpleadoContratista(double tarifaPorPoryecto) {
+        this.tarifaPorProyecto = tarifaPorPoryecto;
+    }
+
+    public double getTarifaPorProyecto() {
+        return tarifaPorProyecto;
+    }
+
+    public void setTarifaPorProyecto(double tarifaPorProyecto) {
+        this.tarifaPorProyecto = tarifaPorProyecto;
+    }
+
+    public double calcularPago()
+    {
+        double cobro = tarifaPorProyecto * horasTrabajadas;
+                return cobro;
+    }
+
+}
