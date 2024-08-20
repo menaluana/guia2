@@ -1,0 +1,137 @@
+public class Main {
+    public static void main (String [] args) {
+        Autor autor1 = new Autor("Joshua", "Blosh","joshua@email.com", 'M');
+        System.out.println(autor1.mostrarAutor());
+        Libro libro1 = new Libro("Effective Java", 450, 150, autor1); //punto f
+        System.out.println(libro1.mostrarLibro());
+        libro1.modificarPrecioYCantidad();
+        System.out.println(libro1.mostrarMensaje());
+    }
+}
+
+CLASE AUTOR
+
+public class Autor {
+     protected String nombre;
+     protected String apellido;
+     protected String mail;
+     protected char genero;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public char getGenero() {
+        return genero;
+    }
+
+    public void setGenero(char genero) {
+        this.genero = genero;
+    }
+
+    public Autor ()
+    {
+        this.nombre = "NoDefinido";
+        this.apellido = "NoDefinido";
+        this.genero = 'x';
+        this.mail = "NoDefinido";
+    }
+
+    public Autor (String nombre, String apellido, String mail, char genero)
+    {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.mail = mail;
+        this.genero = genero;
+    }
+
+    public String mostrarAutor ()
+    {
+        return ("Nombre: " + nombre + " Apellido: " + apellido + " Mail: " + mail + " Genero: " + genero);
+
+    }
+
+}
+
+CLASE LIBRO
+
+public class Libro extends Autor{
+    private String titulo;
+    private float precio;
+    private int stock;
+    protected Autor escritor;
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+    public Libro ()
+    {
+        this.titulo = "nodefinido";
+        this.precio = 0;
+        this.stock = 0;
+        this.escritor = null;
+    }
+    public Libro (String titulo, float precio, int stock, Autor escritor)
+    {
+
+        this.titulo = titulo;
+        this.precio = precio;
+        this.stock = stock;
+        this.escritor = escritor;
+    }
+
+    public String mostrarLibro (){
+        return ("Titulo: " + titulo + " Precio: " + precio + " Stock: " + stock + "Autor: " + escritor.mostrarAutor());
+    }
+
+    public void modificarPrecioYCantidad ()
+    {
+        this.precio = 500;
+        this.stock = 50;
+
+    }
+
+    public String mostrarMensaje (){
+        return ("El titulo " + titulo + " Del autor " + escritor.nombre + escritor.apellido + " Se vende a " + precio +" pesos ");
+    }
+}
