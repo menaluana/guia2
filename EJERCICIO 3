@@ -1,0 +1,142 @@
+import java.util.UUID;
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+
+        UUID id = UUID.randomUUID();
+        Clientes cliente1 = new Clientes("Ignacio", "igna@gmail.com", 0.1);
+        cliente1.mostrarCliente();
+        Facturas facutra1 = new Facturas(cliente1, 100.00);
+        facutra1.montoFinal();
+        facutra1.mostrarFactura();
+
+    }
+}
+
+CLASE CLIENTES
+
+import java.util.UUID;
+
+public class Clientes {
+    protected UUID id;
+    protected String nombre;
+    protected String mail;
+    protected double descuento;
+
+    public UUID getId() {
+        return id;
+    }
+    public void setId(UUID id) {
+        this.id = id;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public String getMail() {
+        return mail;
+    }
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+    public double getDescuento() {
+        return descuento;
+    }
+    public void setDescuento(double descuento) {
+        this.descuento = descuento;
+    }
+
+    public Clientes() {
+        this.id = null;
+        this.nombre = "NoDefinido";
+        this.mail = "NoDefinido";
+        this.descuento = 0;
+
+    }
+
+    public Clientes(String nombre, String mail, double descuento) {
+        this.id = UUID.randomUUID();
+        this. nombre = nombre;
+        this.mail = mail;
+        this.descuento = descuento;
+
+    }
+
+    public void mostrarCliente (){
+        System.out.println("ID: " + id + "\nNombre: " + nombre + "\nMail: " + mail + "\nDescuento: " + descuento);
+    }
+}
+
+CLASE FACTURAS
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+public class Facturas extends Clientes{
+    Clientes cliente;
+    private double montoTotal;
+    private UUID idFactura;
+    private LocalDate fecha;
+    private LocalDateTime hora;
+
+    public Clientes getCliente() {
+        return cliente;
+    }
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
+    }
+    public double getMontoTotal() {
+        return montoTotal;
+    }
+    public void setMontoTotal(double montoTotal) {
+        this.montoTotal = montoTotal;
+    }
+    public UUID getIdFactura() {
+        return idFactura;
+    }
+    public void setIdFactura(UUID idFactura) {
+        this.idFactura = idFactura;
+    }
+    public LocalDate getFecha() {
+        return fecha;
+    }
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+    public LocalDateTime getHora() {
+        return hora;
+    }
+    public void setHora(LocalDateTime hora) {
+        this.hora = hora;
+    }
+
+    public Facturas() {
+        this.cliente = null;
+        this.montoTotal= 0;
+        this.idFactura = null;
+        this.fecha = null;
+        this.hora = null;
+    }
+    public Facturas(Clientes cliente, double montoTotal) {
+        this.cliente = cliente;
+        this.montoTotal = montoTotal;
+        this.idFactura = UUID.randomUUID();
+        this.fecha = LocalDate.now();
+        this.hora = LocalDateTime.now();
+    }
+    public void montoFinal ()
+    {
+        double desc = montoTotal * cliente.descuento;
+        montoTotal = montoTotal - desc;
+
+    }
+    public void mostrarFactura (){
+        System.out.println("Monto Total: " + montoTotal + "\nID Factura: "+ idFactura + "\nFecha: " + fecha + "\nHora: " + hora + "\nID Cliente: "+ cliente.id + "\nCliente: " + cliente.nombre + "\nEmail: " + cliente.mail + "\nDescuento: " + cliente.descuento );
+    }
+
+}
