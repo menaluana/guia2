@@ -1,0 +1,176 @@
+public class Main {
+    public static void main(String[] args) {
+        Estudiante estudiante1 = new Estudiante(46639524, "Anna", "Dominguez", "chispita@gmail.com", 2023, 48000.00);
+        Estudiante estudiante2 = new Estudiante(46107122, "Cata", "Graziano", "catagrazian@gmail.com", 2023, 260000.00);
+        Estudiante estudiante3 = new Estudiante(46012968, "Luana", "Mena", "menaluana2004@gmail.com", 2023, 58000.00);
+        Estudiante estudiante4 = new Estudiante(44957377, "Pilar", "Dominguez", "pilar@gmail.com", 2022, 70000.00);
+
+        Staff staff1 = new Staff(111, "Chano", "Alvarez", "chano@gmail.com", 10000, "Noche");
+        Staff staff2 = new Staff(222, "Taylor", "Swift", "taylor@gmail.com", 11000, "Dia");
+        Staff staff3 = new Staff(333, "Maria", "Gimenez", "gimenez@gmail.com", 12000, "Dia");
+        Staff staff4 = new Staff(444, "Pablo", "Gomez", "pablo@gmail.com", 13000, "Noche");
+
+        //ARRAY estudiantes
+        Persona personas[] = new Persona[8];
+        personas[0] = estudiante1;
+        personas[1] = estudiante2;
+        personas[2] = estudiante3;
+        personas[3] = estudiante4;
+        //staff
+        personas[4] = staff1;
+        personas[5] = staff2;
+        personas[6] = staff3;
+        personas[7] = staff4;
+        Persona.cuantosHay(personas);
+
+
+
+
+
+    }
+}
+
+CLASE PERSONA
+
+public class Persona {
+    protected double dni;
+    protected String nombre;
+    protected String apellido;
+    protected String email;
+    protected String dirección;
+
+
+    public double getDni() {
+        return dni;
+    }
+    public void setDni(double dni) {
+        this.dni = dni;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public String getApellido() {
+        return apellido;
+    }
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getDirección() {
+        return dirección;
+    }
+
+    public void setDirección(String dirección) {
+        this.dirección = dirección;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Persona() {
+        this.dni = 0.0;
+        this.nombre = "NoDefinido";
+        this.apellido = "NoDefinido";
+        this.email = "NoDefinido";
+    }
+    public Persona(double dni, String nombre, String apellido, String email) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+    }
+    public static void cuantosHay (Persona personas[]){
+        int e = 0;
+        int s = 0;
+        for (int i = 0; i < personas.length; i++) {
+            if (personas[i] instanceof Estudiante) {
+                e++;
+            } else if (personas[i] instanceof Staff) {
+                s++;
+            }
+        }
+        System.out.println("La cantidad de Staff que hay es: " + s);
+        System.out.println("La cantidad de Estudiante que hay es: " + e);
+
+    }
+}
+
+CLASE ESTUDIANTE
+
+public class Estudiante extends Persona {
+    int añoDeIngreso;
+    double cuotaMensual;
+    String carrera;
+
+    public int getAñoDeIngreso() {
+        return añoDeIngreso;
+    }
+    public void setAñoDeIngreso(int añoDeIngreso) {
+        this.añoDeIngreso = añoDeIngreso;
+    }
+    public double getCuotaMensual() {
+        return cuotaMensual;
+    }
+    public void setCuotaMensual(double cuotaMensual) {
+        this.cuotaMensual = cuotaMensual;
+    }
+    public String getCarrera() {
+        return carrera;
+    }
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
+    public Estudiante(int añoDeIngreso, double cuotaMensual, String carrera) {
+        super();
+        this.añoDeIngreso = 0;
+        this.cuotaMensual = 0;
+        this.carrera = "NoDefinido";
+    }
+
+    public Estudiante(double dni, String nombre, String apellido, String email, int añoDeIngreso, double cuotaMensual) {
+        super(dni, nombre, apellido, email);
+        this.añoDeIngreso = añoDeIngreso;
+        this.cuotaMensual = cuotaMensual;
+        this.carrera = carrera;
+    }
+
+
+}
+
+CLASE STAFF
+
+public class Staff extends Persona{
+    double salario;
+    String turno;
+
+    public double getSalario() {
+        return salario;
+    }
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+    public String getTurno() {
+        return turno;
+    }
+    public void setTurno(String turno) {
+        this.turno = turno;
+    }
+
+    public Staff(double salario) {
+        this.salario = salario;
+        this.turno = "NoDefinido";
+    }
+
+    public Staff(double dni, String nombre, String apellido, String email, double salario, String turno) {
+        super(dni, nombre, apellido, email);
+        this.salario = salario;
+        this.turno = turno;
+    }
+
+}
